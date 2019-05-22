@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block script %}
+
+<script>
+    $(document).ready(function() {
+        console.log("working")
+
+        $.ajax({
+            url: "/api/comment",
+            method: "GET",
+            success: function(data) {
+                console.log(data)
+                $.each(data, function(key, value) {
+                    var commentAuthor = value.author;
+                    var commentData = value.comment;
+                    var image_ = value.image
+                    console.log(image_)
+                    $("#comment-id").append(
+                        "<li><div class=\"comment\"><div class=\"comment-avator set-bg\" data-setbg="+image_+" style=\"background-image:url('" + image_+ "')\"></div><div class=\"comment-content\"><h5>" + commentAuthor + "</h5><p>" + commentData + "</p></div></div></li>"
+                    )
+                })
+            },
+            error: function(data) {
+                console.log("error")
+                console.log(data)
+            }
+        })
+    });
+</script>
+<div class="container">
+<div class="comment-warp">
+    <h4 class="comment-title">3 Comments</h4>
+    <ul id="comment-id" class="comment-list">
+        <!-- append here -->
+    </ul>
+    <!-- form here -->
+</div>
+</div>
+
+{% endblock %}
+
+
+

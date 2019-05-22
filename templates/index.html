@@ -1,0 +1,20 @@
+{% include 'comments/comment.html' %}
+<div class="container">
+<!--form section-->
+<div class="comment-form-warp">
+    <h4 class="comment-title">Leave Your Comment</h4>
+    <form class="comment-form" method="post" action="">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                {{form.author}}
+            </div>
+            <div class="col-lg-9">
+                {{form.content}}
+                <button class="site-btn" type="submit" formmethod="post">SEND COMMENT</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--form end-->
+</div>
